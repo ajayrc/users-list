@@ -2,17 +2,23 @@
   <div class="control-panel">
     <!-- todo get labels from i18n file -->
     <form [formGroup]="userForm">
-      <label class="select">Select column to filter:
-        <select formControlName="filterColumn">
-          <option *ngFor="let opt of options" [value]="opt.value">{{ opt.text }}</option>
+      <label class="select"
+        >Select column to filter:
+        <select id="filterColumn" formControlName="filterColumn">
+          <option *ngFor="let opt of options" [value]="opt.value">
+            {{ opt.text }}
+          </option>
         </select>
       </label>
-      <label class="input">Enter filter keywords:
-        <input 
-          formControlName="filterValue" 
-          type="text" 
+      <label class="input"
+        >Enter filter keywords:
+        <input
+          id="filterValue"
+          formControlName="filterValue"
+          type="text"
           placeholder="filter keywords go here..."
-          (keyup)="searchUser()" />
+          (keyup)="searchUser()"
+        />
       </label>
     </form>
   </div>
@@ -30,11 +36,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of users$ | async">
-          <td>{{user.name}}</td>
-          <td>{{user.username}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.phone}}</td>
-          <td>{{user.website}}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.website }}</td>
         </tr>
       </tbody>
     </table>

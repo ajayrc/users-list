@@ -7,7 +7,6 @@ import { Filter, FilterOption, User } from '../models/user';
 import { UsersService } from '../users.service';
 
 const DEBOUNCE_TIME = 300; // todo move to env configs
-  
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -44,8 +43,8 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    private usersService: UsersService) {
-  }
+    private usersService: UsersService
+  ) {}
 
   ngOnInit(): void {
     this.createUserForm();
@@ -55,7 +54,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   createUserForm() {
     this.userForm = this.formBuilder.group({
       filterColumn: [''],
-      filterValue: ['']
+      filterValue: [''],
     });
   }
 
@@ -63,21 +62,18 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.users$ = this.filterParams.pipe(
       debounceTime(DEBOUNCE_TIME), // todo get from configs
       distinctUntilChanged(),
-      switchMap( (filter: Filter) => this.usersService.getUsers(filter))
-    );   
+      switchMap((filter: Filter) => this.usersService.getUsers(filter))
+    );
   }
 
   searchUser() {
     // get query params
-    const {
-      filterColumn,
-      filterValue 
-    } = this.userForm.value;
-
+    const { filterColumn, filterValue } = this.userForm.value;
     // debounce, query, refresh view
-    this.filterParams.next({filterColumn, filterValue})
+    this.filterParams.next({ filterColumn, filterValue });
   }
 
-  ngOnDestroy() { // todo cleaup
+  ngOnDestroy() {
+    // todo cleaup
   }
 }

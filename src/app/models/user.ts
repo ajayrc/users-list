@@ -4,9 +4,9 @@ export interface FilterOption {
 }
 
 export type Filter = {
-  filterColumn?: string,
-  filterValue?: string
-}
+  filterColumn?: string;
+  filterValue?: string;
+};
 
 export type User = {
   id: number;

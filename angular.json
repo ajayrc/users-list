@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "hcl-test"
+    }
+  },
+  "defaultProject": "hcl-test",
+  "cli": {
+    "analytics": false
+  }
 }

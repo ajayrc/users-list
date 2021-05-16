@@ -8,9 +8,29 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display instructions to filter', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('test app is running!');
+    expect(page.getTitleText()).toContain('Select column to filter');
+  });
+
+  it('should display list of users', () => {
+    page.navigateTo();
+    const allUsers = page.getUsersList();
+    allUsers.then((data) => {
+      expect(data[0]).toContain('Bret');
+      expect(data[1]).toContain('Antonette');
+    });
+  });
+
+  it('should apply filter on users', () => {
+    page.navigateTo();
+    page.filterUsers();
+
+    const allUsers = page.getUsersList();
+    allUsers.then((data) => {
+      expect(data[0]).toContain('Bret');
+      expect(data[1]).toBeUndefined();
+    });
   });
 
   afterEach(async () => {
